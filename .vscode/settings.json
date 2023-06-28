@@ -1,0 +1,8 @@
+{
+    "python.formatting.provider": "autopep8",
+    "editor.formatOnSave": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.formatting.blackPath": "black",
+    "notebook.formatOnSave.enabled": true,
+    // "python.formatting.blackPath": ".venv/bin/black"
+}
