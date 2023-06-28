@@ -6,6 +6,14 @@ from src.data.transforms import augment, preprocess
 import matplotlib.pyplot as plt
 
 class MyDataset(Dataset):
+    """
+    Custom dataset class.
+    images_path: str, path to images directory
+    names: list of str, image names
+    labels_path: str, path to labels csv file
+    size: tuple (height, width), size of image after preprocessing
+    augmentation_p: float, probability of applying augmentation
+    """
     def __init__(self, images_path, names, labels_path, size=(224, 224), augmentation_p=0.5):
         self.images_path = images_path
         self.names = names
@@ -18,6 +26,11 @@ class MyDataset(Dataset):
         return len(self.names)
 
     def __getitem__(self, idx):
+        """
+        Returns image and label at index idx.
+        idx: int
+        return: torch tensor, int
+        """
         img = cv2.imread(os.path.join(self.images_path, self.names[idx]))
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         if self.augmentation_p > 0:
@@ -27,6 +40,10 @@ class MyDataset(Dataset):
         return img, label
     
     def show_example(self, idx):
+        """
+        Shows example image and label at index idx.
+        idx: int
+        """
         img, label = self.__getitem__(idx)
         print(f"Label: {label}")
         img = img.numpy().transpose(1, 2, 0)
