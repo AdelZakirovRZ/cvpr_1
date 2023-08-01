@@ -1,0 +1,35 @@
+experiment_name: 'cvppa'
+run_name: 'wwcl_0'
+note: ''
+images_path: '/home/AZA/PycharmProjects/competitions/cvppa2023/dataset/WW2020/images/'
+labels_path: '/home/AZA/PycharmProjects/competitions/cvppa2023/dataset/WW2020/labels_cluster_split.csv'
+fold: 0
+
+checkpoints_path: '/mnt/IMAGING/HUB/MODELS/CHECKPOINTS/cvppa/'
+tracking_uri: 'https://mlflow-dev.rijkzwaan.com/'
+augmentation_p: 0.5
+size: [512, 512]
+train_batch_size: 2
+num_workers: 4
+epochs: 500
+mixup: False
+
+load_checkpoint_file: null
+freeze: False
+
+model:
+  model_name: 'mobilevitv2_200'
+  pretrained: True
+  num_classes: 7
+
+optimizer: 'adam'
+scheduler: 'Cosine'
+lr: 0.0001
+lr_end: 0.000001
+weight_decay: 0.000001
+es_patience: 20
+acc_grad: 4
+
+strategy: 'ddp'
+
+gpus: [0, 1]
